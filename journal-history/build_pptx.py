@@ -78,6 +78,7 @@ text(120, 140, 1700, 40, "Three journals merged into one between 1974 and 1988 (
 
 # Year guides
 X74, X86, X88 = 220, 900, 1260
+X75 = X74 + (X86 - X74) / 12  # 1975 on the same year scale
 for x in (X74, X86, X88):
     g = s.shapes.add_connector(1, Emu(x*PX), Emu(250*PX), Emu(x*PX), Emu(900*PX))
     g.line.color.rgb = GUIDE; g.line.width = Pt(1.5); g.line.dash_style = MSO_LINE_DASH_STYLE.DASH
@@ -85,8 +86,7 @@ for x in (X74, X86, X88):
 MAIN_Y = 520
 # Feeder journals
 path([(X74, 360), (800, 360)] + bez((800, 360), (860, 360), (860, MAIN_Y), (X86, MAIN_Y)), YELLOW, 34, "Landscape Planning")
-path([(360, 680), (520, 680)], GRAY, 10, "Urban Ecology (earlier)", dash=True)
-path([(560, 680), (800, 680)] + bez((800, 680), (860, 680), (860, MAIN_Y), (X86, MAIN_Y)), GRAY, 34, "Urban Ecology")
+path([(X75, 680), (800, 680)] + bez((800, 680), (860, 680), (860, MAIN_Y), (X86, MAIN_Y)), GRAY, 34, "Urban Ecology")
 path([(800, 800), (940, 800)], LGRAY, 10, "RRR (earlier)", dash=True)
 path([(980, 800), (1160, 800)] + bez((1160, 800), (1220, 800), (1220, MAIN_Y), (X88, MAIN_Y)), LGRAY, 34, "Reclamation and Revegetation Research")
 
@@ -97,12 +97,13 @@ fb.add_line_segments([(1805*PX, MAIN_Y*PX), (1735*PX, 562*PX)], close=True)
 arrow = fb.convert_to_shape(); arrow.name = "Arrowhead"
 arrow.fill.solid(); arrow.fill.fore_color.rgb = BLUE; arrow.line.fill.background()
 
-dot(X74, 360, 16, YELLOW); dot(X86, MAIN_Y, 18, BLUE); dot(X88, MAIN_Y, 18, BLUE)
+dot(X74, 360, 16, YELLOW); dot(X75, 680, 16, GRAY); dot(X86, MAIN_Y, 18, BLUE); dot(X88, MAIN_Y, 18, BLUE)
 
 # Labels
 text(240, 300, 600, 40, "Landscape Planning", 16, GOLD, bold=True)
 text(240, 400, 600, 70, ["Founded by Elsevier", "Founding editor-in-chief: Arnold E. Weddle"], 12, MUTED)
-text(480, 625, 400, 40, "Urban Ecology", 16, GRAY, bold=True)
+text(X75 + 20, 625, 400, 40, "Urban Ecology", 16, GRAY, bold=True)
+text(X75 + 20, 720, 600, 70, ["Launched 1975 by Elsevier", "First editor: Royce LaNier"], 12, MUTED)
 text(880, 845, 800, 40, "Reclamation and Revegetation Research", 16, RGBColor(0x7A, 0x7E, 0x80), bold=True)
 text(960, 440, 800, 50, "Landscape and Urban Planning", 19, BLUE, bold=True)
 text(1650, 580, 160, 40, "Today", 13, BLUE, bold=True)
@@ -110,7 +111,7 @@ text(1650, 580, 160, 40, "Today", 13, BLUE, bold=True)
 # Axis + years
 ax = s.shapes.add_connector(1, Emu(120*PX), Emu(900*PX), Emu(1800*PX), Emu(900*PX))
 ax.line.color.rgb = BLACK; ax.line.width = Pt(2)
-for x, yr, cap in [(X74, "1974", ["Journal founded"]),
+for x, yr, cap in [(X74, "1974", ["Landscape Planning", "founded"]),
                    (X86, "1986", ["Renamed; merged with", "Urban Ecology"]),
                    (X88, "1988", ["Absorbs Reclamation &", "Revegetation Research"])]:
     text(x-160, 925, 320, 50, yr, 24, BLUE, bold=True, align=PP_ALIGN.CENTER)
