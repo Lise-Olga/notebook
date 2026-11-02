@@ -1,0 +1,53 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;background:#fff;font-family:"Segoe UI",Helvetica,Arial,sans-serif}
+</style></head><body>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <linearGradient id="fadeUE" x1="0" x2="1"><stop offset="0" stop-color="#2E9E6B" stop-opacity="0"/><stop offset=".35" stop-color="#2E9E6B"/></linearGradient>
+ <linearGradient id="fadeRR" x1="0" x2="1"><stop offset="0" stop-color="#C77A1E" stop-opacity="0"/><stop offset=".45" stop-color="#C77A1E"/></linearGradient>
+</defs>
+<rect width="1920" height="1080" fill="#fff"/>
+<text x="120" y="120" font-size="54" font-weight="700" fill="#1B2A3A">How <tspan font-style="italic">Landscape and Urban Planning</tspan> came together</text>
+<text x="120" y="175" font-size="30" fill="#5B6B7B">Three journals, merged into one between 1974 and 1988 (publisher: Elsevier)</text>
+
+<!-- year guides -->
+<g stroke="#D5DCE3" stroke-width="2" stroke-dasharray="6 8">
+ <line x1="220" y1="250" x2="220" y2="900"/><line x1="900" y1="250" x2="900" y2="900"/><line x1="1260" y1="250" x2="1260" y2="900"/>
+</g>
+
+<!-- Landscape Planning -->
+<path d="M220 360 H800 C860 360 860 520 900 520" fill="none" stroke="#2F6FB5" stroke-width="34" stroke-linecap="round"/>
+<!-- Urban Ecology -->
+<path d="M380 680 H800 C860 680 860 520 900 520" fill="none" stroke="url(#fadeUE)" stroke-width="34" stroke-linecap="round"/>
+<!-- RRR -->
+<path d="M820 800 H1160 C1220 800 1220 520 1260 520" fill="none" stroke="url(#fadeRR)" stroke-width="34" stroke-linecap="round"/>
+<!-- Main -->
+<path d="M900 520 H1740" fill="none" stroke="#1B2A3A" stroke-width="44" stroke-linecap="round"/>
+<polygon points="1740,480 1800,520 1740,560" fill="#1B2A3A"/>
+
+<!-- labels -->
+<g font-size="30" font-weight="600">
+ <text x="240" y="320" fill="#2F6FB5">Landscape Planning</text>
+ <text x="240" y="420" font-size="24" font-weight="400" fill="#5B6B7B">Founded by Elsevier</text><text x="240" y="452" font-size="24" font-weight="400" fill="#5B6B7B">Founding editor-in-chief: Arnold E. Weddle</text>
+ <text x="480" y="640" fill="#2E9E6B">Urban Ecology</text>
+ <text x="880" y="868" fill="#C77A1E">Reclamation and Revegetation Research</text>
+ <text x="960" y="470" font-size="34" font-weight="700" fill="#1B2A3A">Landscape and Urban Planning</text>
+ <text x="1640" y="600" font-size="26" font-weight="600" fill="#1B2A3A">Today</text>
+</g>
+
+<!-- merge dots -->
+<circle cx="220" cy="360" r="16" fill="#fff" stroke="#2F6FB5" stroke-width="8"/>
+<circle cx="900" cy="520" r="18" fill="#fff" stroke="#1B2A3A" stroke-width="8"/>
+<circle cx="1260" cy="520" r="18" fill="#fff" stroke="#1B2A3A" stroke-width="8"/>
+
+<!-- axis -->
+<line x1="120" y1="900" x2="1800" y2="900" stroke="#1B2A3A" stroke-width="3"/>
+<g font-weight="700" font-size="44" fill="#1B2A3A" text-anchor="middle">
+ <text x="220" y="965">1974</text><text x="900" y="965">1986</text><text x="1260" y="965">1988</text>
+</g>
+<g font-size="22" fill="#5B6B7B" text-anchor="middle">
+ <text x="220" y="1005">Journal founded</text>
+ <text x="900" y="1005">Renamed; merged with</text><text x="900" y="1035">Urban Ecology</text>
+ <text x="1260" y="1005">Absorbs Reclamation &amp;</text><text x="1260" y="1035">Revegetation Research</text>
+</g>
+</svg></body></html>
