@@ -1,4 +1,4 @@
-"""Build an editable 16:9 PowerPoint slide of the journal's history (SDSU colours)."""
+"""Build an editable 16:9 PowerPoint slide of the journal's history (South Dakota State University colours)."""
 from pptx import Presentation
 from pptx.util import Emu, Pt
 from pptx.dml.color import RGBColor
@@ -7,8 +7,10 @@ from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.dml import MSO_LINE_DASH_STYLE
 
 PX = 6350  # EMU per design pixel (1920 px = 13.333 in)
-RED = RGBColor(0xA6, 0x19, 0x2E)      # SDSU Red
-BLACK = RGBColor(0x00, 0x00, 0x00)    # SDSU Black
+BLUE = RGBColor(0x00, 0x33, 0xA0)     # SDSU Jackrabbit Blue
+YELLOW = RGBColor(0xFF, 0xD1, 0x00)   # SDSU Yellow
+GOLD = RGBColor(0x8C, 0x6D, 0x00)     # darker yellow, readable as text
+BLACK = RGBColor(0x1A, 0x1A, 0x1A)
 GRAY = RGBColor(0x54, 0x58, 0x5A)     # dark gray
 LGRAY = RGBColor(0x9E, 0xA2, 0xA2)    # light gray
 MUTED = RGBColor(0x5F, 0x63, 0x66)
@@ -71,7 +73,7 @@ def dot(cx, cy, r, ring):
 
 
 # Title
-text(120, 70, 1700, 70, [("How ", ("Landscape and Urban Planning", True), " came together")], 30, BLACK, bold=True)
+text(120, 70, 1700, 70, [("How ", ("Landscape and Urban Planning", True), " came together")], 30, BLUE, bold=True)
 text(120, 140, 1700, 40, "Three journals merged into one between 1974 and 1988 (publisher: Elsevier)", 16, MUTED)
 
 # Year guides
@@ -82,28 +84,28 @@ for x in (X74, X86, X88):
 
 MAIN_Y = 520
 # Feeder journals
-path([(X74, 360), (800, 360)] + bez((800, 360), (860, 360), (860, MAIN_Y), (X86, MAIN_Y)), RED, 34, "Landscape Planning")
+path([(X74, 360), (800, 360)] + bez((800, 360), (860, 360), (860, MAIN_Y), (X86, MAIN_Y)), YELLOW, 34, "Landscape Planning")
 path([(360, 680), (520, 680)], GRAY, 10, "Urban Ecology (earlier)", dash=True)
 path([(560, 680), (800, 680)] + bez((800, 680), (860, 680), (860, MAIN_Y), (X86, MAIN_Y)), GRAY, 34, "Urban Ecology")
 path([(800, 800), (940, 800)], LGRAY, 10, "RRR (earlier)", dash=True)
 path([(980, 800), (1160, 800)] + bez((1160, 800), (1220, 800), (1220, MAIN_Y), (X88, MAIN_Y)), LGRAY, 34, "Reclamation and Revegetation Research")
 
 # Main journal + arrowhead
-path([(X86, MAIN_Y), (1740, MAIN_Y)], BLACK, 44, "Landscape and Urban Planning")
+path([(X86, MAIN_Y), (1740, MAIN_Y)], BLUE, 44, "Landscape and Urban Planning")
 fb = s.shapes.build_freeform(1735*PX, 478*PX, scale=1.0)
 fb.add_line_segments([(1805*PX, MAIN_Y*PX), (1735*PX, 562*PX)], close=True)
 arrow = fb.convert_to_shape(); arrow.name = "Arrowhead"
-arrow.fill.solid(); arrow.fill.fore_color.rgb = BLACK; arrow.line.fill.background()
+arrow.fill.solid(); arrow.fill.fore_color.rgb = BLUE; arrow.line.fill.background()
 
-dot(X74, 360, 16, RED); dot(X86, MAIN_Y, 18, BLACK); dot(X88, MAIN_Y, 18, BLACK)
+dot(X74, 360, 16, YELLOW); dot(X86, MAIN_Y, 18, BLUE); dot(X88, MAIN_Y, 18, BLUE)
 
 # Labels
-text(240, 300, 600, 40, "Landscape Planning", 16, RED, bold=True)
+text(240, 300, 600, 40, "Landscape Planning", 16, GOLD, bold=True)
 text(240, 400, 600, 70, ["Founded by Elsevier", "Founding editor-in-chief: Arnold E. Weddle"], 12, MUTED)
 text(480, 625, 400, 40, "Urban Ecology", 16, GRAY, bold=True)
-text(880, 845, 800, 40, "Reclamation and Revegetation Research", 16, LGRAY, bold=True)
-text(960, 440, 800, 50, "Landscape and Urban Planning", 19, BLACK, bold=True)
-text(1650, 580, 160, 40, "Today", 13, BLACK, bold=True)
+text(880, 845, 800, 40, "Reclamation and Revegetation Research", 16, RGBColor(0x7A, 0x7E, 0x80), bold=True)
+text(960, 440, 800, 50, "Landscape and Urban Planning", 19, BLUE, bold=True)
+text(1650, 580, 160, 40, "Today", 13, BLUE, bold=True)
 
 # Axis + years
 ax = s.shapes.add_connector(1, Emu(120*PX), Emu(900*PX), Emu(1800*PX), Emu(900*PX))
@@ -111,8 +113,8 @@ ax.line.color.rgb = BLACK; ax.line.width = Pt(2)
 for x, yr, cap in [(X74, "1974", ["Journal founded"]),
                    (X86, "1986", ["Renamed; merged with", "Urban Ecology"]),
                    (X88, "1988", ["Absorbs Reclamation &", "Revegetation Research"])]:
-    text(x-160, 925, 320, 50, yr, 24, RED, bold=True, align=PP_ALIGN.CENTER)
+    text(x-160, 925, 320, 50, yr, 24, BLUE, bold=True, align=PP_ALIGN.CENTER)
     text(x-160, 985, 320, 70, cap, 12, MUTED, align=PP_ALIGN.CENTER)
 
-prs.save("journal-timeline-SDSU.pptx")
+prs.save("journal-timeline-SDState.pptx")
 print("saved")
